@@ -1,0 +1,6 @@
+Injection sql pour se connecter en admin
+
+reverse shell pour se connecter au serveur du site
+
+
+html/include -> infos bdd postgres (common script) -> 

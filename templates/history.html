@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Historique</title>
+</head>
+<body>
+    <h1>Historique des recherches</h1>
+
+    {% if history %}
+        <ul>
+        {% for entry in history %}
+            <li>
+                <form action="/search" method="post">
+                    <input type="hidden" name="keyword" value="{{ entry.keyword }}">
+                    <input type="hidden" name="file_type" value="{{ entry.file_type }}">
+                    <input type="hidden" name="date_after" value="{{ entry.date_after }}">
+                    <input type="hidden" name="date_before" value="{{ entry.date_before }}">
+                    <button type="submit">
+                        Recherche : {{ entry.keyword }}
+                        {% if entry.file_type %} | Type : {{ entry.file_type }} {% endif %}
+                        {% if entry.date_after %} | Après : {{ entry.date_after }} {% endif %}
+                        {% if entry.date_before %} | Avant : {{ entry.date_before }} {% endif %}
+                    </button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun historique disponible.</p>
+    {% endif %}
+
+    <a href="/" class="back-btn">Retour à la recherche</a>
+</body>
+</html>

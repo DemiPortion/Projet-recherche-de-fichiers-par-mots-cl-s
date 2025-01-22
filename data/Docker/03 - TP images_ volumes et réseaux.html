@@ -1,0 +1,372 @@
+<!DOCTYPE html><html><head>
+      <title>03-tp-volumes-reseaux</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////home/glandalf/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.6.8/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p,html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div{display:inline}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  300px/2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="mise-en-place-dun-environnement-de-d%C3%A9veloppement">Mise en place d&apos;un environnement de d&#xE9;veloppement</h1>
+
+<p>Nous allons dans un premier temps mettre en place un environnement de d&#xE9;veloppement/test sur les serveurs mis &#xE0; disposition dans le cadre de la formation, puis tenter de r&#xE9;aliser cela sur les machines physiques (fonctionnant sous Windows).</p>
+<h2 class="mume-header" id="description-de-la-solution">Description de la solution</h2>
+
+<p>Partant d&apos;une application 3-tiers existante : un frontend en VueJs, un backend en Python-Flask/FastAPI, une base de donn&#xE9;es Postgres, il va falloir mettre en place trois conteneurs interagissant entre eux d&apos;une part et manipulant des donn&#xE9;es de mani&#xE8;re p&#xE9;renne : le code source des applications et les donn&#xE9;es de la base de donn&#xE9;es. Cette solution sera d&#xE9;ploy&#xE9;e dans un r&#xE9;seau d&#xE9;di&#xE9;, afin de ne pas lui permettre d&apos;interagir avec d&apos;autres conteneurs (et par r&#xE9;ciproque, de ne pas se faire attaquer, ou le moins possible, depuis l&apos;ext&#xE9;rieur).</p>
+<p>A chaque &#xE9;tape, il est n&#xE9;cessaire de prendre un temps r&#xE9;el de validation apr&#xE8;s chaque &#xE9;tape afin de s&apos;assurer que l&apos;on est sur la bonne voie.</p>
+<h2 class="mume-header" id="etape-1---larchitecture">Etape 1 - l&apos;architecture</h2>
+
+<p>Cette &#xE9;tape consiste &#xE0; d&#xE9;finir un plan d&apos;action. Nous ne produisons rien de technique mais nous devons r&#xE9;aliser une documentation d&#xE9;crivant les choix qui vont &#xEA;tre mis en oeuvre.</p>
+<h3 class="mume-header" id="le-r%C3%A9seau">Le r&#xE9;seau</h3>
+
+<p>Il va notamment falloir cr&#xE9;er un ou plusieurs r&#xE9;seaux d&#xE9;di&#xE9;s &#xE0; notre solution. Le frontend et le backend doivent &#xEA;tre accessibles au public (depuis l&apos;ext&#xE9;rieur du serveur, typiquement le navigateur) alors que la base de donn&#xE9;es ne doit &#xEA;tre accessible que depuis le backend : ni depuis l&apos;ext&#xE9;rieur du serveur, ni depuis le conteneur frontend ou un conteneur externe &#xE0; notre solution.</p>
+<blockquote>
+<p>Pour cela, nous allons devoir cr&#xE9;er deux r&#xE9;seaux : un public, et un interne et documenter cela dans le Wiki Gitlab</p>
+</blockquote>
+<p>Un &#xE9;l&#xE9;ment de taille &#xE0; consid&#xE9;rer est le lien avec des services compl&#xE9;mentaires (SSO et ressources essentiellement). Nous utiliserons pour cela les services de production &#xE9;tant donn&#xE9; qu&apos;il n&apos;y aura pas d&apos;effet de bord sur ces cas d&apos;usage.</p>
+<h3 class="mume-header" id="les-volumes">Les volumes</h3>
+
+<p>Il faut &#xE9;galement d&#xE9;finir quelles donn&#xE9;es vont &#xEA;tre utilis&#xE9;es/produites par chaque conteneurs, et produire des volumes associ&#xE9;s. La production de volumes doit s&apos;accompagner d&apos;une strat&#xE9;gie de sauvegarde, que l&apos;on documentera plus tard probablement dans le document de synth&#xE8;se.</p>
+<blockquote>
+<p>Il est aussi n&#xE9;cessaire de documenter ces choix dans le document d&apos;architecture du wiki</p>
+</blockquote>
+<h3 class="mume-header" id="description-de-la-solution-retenue">Description de la solution retenue</h3>
+
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">TODO: r&#xE9;aliser durant la session
+</pre><h2 class="mume-header" id="etape-2---d%C3%A9ploiement-de-la-base-de-donn%C3%A9es">Etape 2 - d&#xE9;ploiement de la base de donn&#xE9;es</h2>
+
+<p>Nous allons mettre en place une base de donn&#xE9;es Postgres, en version identique &#xE0; celle de l&apos;environnement de production dans un premier temps. Il sera n&#xE9;cessaire de prendre en compte les &#xE9;l&#xE9;ments suivants :</p>
+<ul>
+<li>production du ou des r&#xE9;seaux d&#xE9;di&#xE9;s (pr&#xE9;fixez tous les r&#xE9;seaux cr&#xE9;&#xE9;s pour l&apos;occasion par <code>dev-</code>)</li>
+<li>production du ou des volumes d&#xE9;di&#xE9;s (pr&#xE9;fixez tous les volumes cr&#xE9;&#xE9;s pour l&apos;occasion par <code>dev-</code>)</li>
+<li>choix de l&apos;image adapt&#xE9;e et pr&#xE9;paration de la commande d&apos;ex&#xE9;cution (<code>docker run</code>) qui sera ajout&#xE9;e &#xE0; la documentation</li>
+<li>cette commande doit notamment exposer les ports adapt&#xE9;s, d&#xE9;finir les r&#xE9;seaux n&#xE9;cessaires, mapper les volumes n&#xE9;cessaires</li>
+<li>la commande doit &#xE9;galement permettre un param&#xE9;trage des identifiants de connexion et autre</li>
+<li>une fois le conteneur d&#xE9;ploy&#xE9;, il faut y d&#xE9;ployer une copie de la base de donn&#xE9;es, ou</li>
+</ul>
+<h3 class="mume-header" id="mise-en-oeuvre">Mise en oeuvre</h3>
+
+<blockquote>
+<p>Une fois le conteneur d&#xE9;ploy&#xE9;, nous allons devoir le tester en nous assurant que les donn&#xE9;es ins&#xE9;r&#xE9;es sont bien p&#xE9;rennes (apr&#xE8;s suppression du conteneur), que le conteneur n&apos;est pas accessible depuis un conteneur externe au r&#xE9;seau ou depuis l&apos;ext&#xE9;rieur, mais que notre backend pourra bien y acc&#xE9;der.</p>
+</blockquote>
+<p>On pourra par exemple d&#xE9;ployer un conteneur adminer, une fois dans le r&#xE9;seau priv&#xE9; de la base, une fois depuis l&apos;ext&#xE9;rieur, et v&#xE9;rifier, avec un <code>tcpdump</code> par exemple, que les comportements observ&#xE9;s sont bien ceux attendus</p>
+<h3 class="mume-header" id="description-de-la-solution-retenue-et-proc%C3%A9dure-de-mise-en-oeuvre">Description de la solution retenue et proc&#xE9;dure de mise en oeuvre</h3>
+
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">TODO: r&#xE9;aliser durant la session
+</pre><h2 class="mume-header" id="etape-3---d%C3%A9ploiement-dun-backend">Etape 3 - d&#xE9;ploiement d&apos;un backend</h2>
+
+<p>Maintenant que la base de donn&#xE9;es est en place, il faut mettre en place le backend en tenant notamment compte :</p>
+<ul>
+<li>de la n&#xE9;cessit&#xE9; du conteneur &#xE0; communiquer avec la base de donn&#xE9;es, le SSO et le service de ressources</li>
+<li>des volumes n&#xE9;cessaires</li>
+<li>des r&#xE9;seaux n&#xE9;cessaires</li>
+<li>des ports expos&#xE9;s</li>
+<li>des variables d&apos;environnement permettant la configuration de l&apos;application (SSO, ressources et BDD notamment)</li>
+</ul>
+<p>Cette solution devra prendre la forme d&apos;un Dockerfile que l&apos;on d&#xE9;ploiera sur le registry Gitlab du project <code>cellule-methodes</code></p>
+<p>On pourra par exemple utiliser Insomnia pour tester des requ&#xEA;tes de l&apos;API afin de s&apos;assurer de son bon fonctionnement (ou curl) depuis un poste client, puis depuis le serveur sur son r&#xE9;seau interne (cela devrait fonctionner dans le premier cas, pas dans le deuxi&#xE8;me)</p>
+<h3 class="mume-header" id="mise-en-oeuvre-1">Mise en oeuvre</h3>
+
+<blockquote>
+<p>Une fois le conteneur d&#xE9;ploy&#xE9;, nous allons devoir le tester en nous assurant que le lien avec le SSO est pr&#xE9;sent, qu&apos;il acc&#xE8;de &#xE9;galement bien &#xE0; la BDD et que l&apos;utilisation de l&apos;application permet bien de manipuler les donn&#xE9;es en base. Il faudra aussi s&apos;assurer que le conteneur n&apos;est pas accessible depuis un conteneur externe au r&#xE9;seau mais qu&apos;il est accessible de l&apos;ext&#xE9;rieur afin que notre frontend puisse bien y acc&#xE9;der.</p>
+</blockquote>
+<h3 class="mume-header" id="description-de-la-solution-retenue-et-proc%C3%A9dure-de-mise-en-oeuvre-1">Description de la solution retenue et proc&#xE9;dure de mise en oeuvre</h3>
+
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">TODO: r&#xE9;aliser durant la session
+</pre><h2 class="mume-header" id="etape-4---d%C3%A9ploiement-dun-frontend">Etape 4 - d&#xE9;ploiement d&apos;un frontend</h2>
+
+<p>La partie backend &#xE9;tant maintenant fonctionnelle, il reste &#xE0; mettre en place le frontend de l&apos;application. Cela peut se faire de deux mani&#xE8;res : en lan&#xE7;ant le serveur de d&#xE9;veloppement de VueJS (<code>npm run dev</code>), ou en compilant les sources pour le d&#xE9;ployer de mani&#xE8;re statique derri&#xE8;re un reverse proxy (<code>npm run build</code>). Cela doit se faire en tenant notamment compte :</p>
+<ul>
+<li>des volumes n&#xE9;cessaires</li>
+<li>des r&#xE9;seaux n&#xE9;cessaires (pi&#xE8;ge)</li>
+<li>des ports expos&#xE9;s</li>
+<li>des variables d&apos;environnement permettant la configuration (pi&#xE8;ge)</li>
+</ul>
+<p>Il faudra produire deux Dockerfile (un pour le dev, un pour la production) tenant compte des diff&#xE9;rentes consid&#xE9;rations sus-cit&#xE9;es. Il faudra &#xE9;galement d&#xE9;ployer les images sur le registry Gitlab du project <code>cellule-methodes</code>.</p>
+<h3 class="mume-header" id="mise-en-oeuvre-2">Mise en oeuvre</h3>
+
+<blockquote>
+<p>Nous testerons essentiellement une des deux solutions ici en nous assurant que son fonctionnement est bien celui attendu, en v&#xE9;rifiant notamment de son bon impact dans la base de donn&#xE9;es</p>
+</blockquote>
+<h3 class="mume-header" id="description-de-la-solution-retenue-et-proc%C3%A9dure-de-mise-en-oeuvre-2">Description de la solution retenue et proc&#xE9;dure de mise en oeuvre</h3>
+
+<pre data-role="codeBlock" data-info="markdown" class="language-markdown">TODO: r&#xE9;aliser durant la session
+</pre><h2 class="mume-header" id="pour-aller-plus-loin">Pour aller plus loin</h2>
+
+<p>La solution mise en place est ici assez fragile et ne propose un niveau de qualit&#xE9; industriel qui va &#xEA;tre n&#xE9;cessaire &#xE0; terme. Il faudrait par exemple mettre en place :</p>
+<ul>
+<li>une t&#xE2;che Cron de sauvegarde de chaque volume en place</li>
+<li>d&#xE9;finir des <em>healthcheck</em> pour tous nos conteneurs</li>
+<li>mettre en place des scripts pour la production des nouvelles images Docker (toutes)<br>
+cela permettra &#xE0; terme la mise en place d&apos;une solution CI-CD dont nous ne parlerons h&#xE9;las pas ici</li>
+<li>mettre en place des scripts de d&#xE9;ploiement des images Docker &#xE0; jour</li>
+<li>mettre en place des scripts de restauration d&apos;une sauvegarde de tout ou partie des volumes</li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

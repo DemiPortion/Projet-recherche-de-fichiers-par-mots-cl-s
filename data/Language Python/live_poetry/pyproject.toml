@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "live-poetry"
+version = "0.1.0"
+description = "C'est un live qui ne sert à rien"
+authors = ["Marc TELENA <marc.telena@outlook.fr>"]
+license = "LGPL"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

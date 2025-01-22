@@ -1,0 +1,11 @@
+postgres=# CREATE DATABASE keycloak;
+CREATE DATABASE
+postgres=# CREATE USER keycloakuser WITH PASSWORD 'user';
+CREATE ROLE
+postgres=# GRANT ALL PRIVILEGES ON DATABASE keycloak TO keycloakuser;
+GRANT
+postgres=#
+
+keycloak interface :
+admin
+admin

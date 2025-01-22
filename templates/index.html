@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Gestion des Fichiers</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Barre latérale gauche : Favoris -->
+        <div class="sidebar-left">
+            <h2>
+                Favoris
+                <a href="#" id="manage-favorites">Gérer</a>
+            </h2>
+            <ul id="favorites-list">
+                {% if favorites %}
+                    {% for file in favorites %}
+                    <li>
+                        <label>
+                            <input type="checkbox" class="manage-checkbox" style="display: none;" data-file="{{ file }}">
+                            <span>{{ file }}</span>
+                        </label>
+                        <button 
+                            class="favorite-btn favorited" 
+                            data-file="{{ file }}"
+                        >⭐</button>
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    <p>Aucun favori disponible.</p>
+                {% endif %}
+            </ul>
+            <button id="delete-favorites" style="display: none;">Supprimer</button>
+        </div>
+
+        <!-- Section centrale : Recherche -->
+        <div class="center-section">
+            <h1>Recherche de fichiers</h1>
+            <form action="/search" method="post">
+                <input type="text" name="keyword" placeholder="Exemple : rapport, budget, etc." required>
+                <button type="submit">Rechercher</button>
+            </form>
+        </div>
+
+        <!-- Barre latérale droite : Historique -->
+        <div class="sidebar-right">
+            <h2>Historique</h2>
+            <ul>
+                {% for entry in history %}
+                <li>
+                    <form action="/search" method="post">
+                        <input type="hidden" name="keyword" value="{{ entry.keyword }}">
+                        <button type="submit">{{ entry.keyword }}</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const manageButton = document.getElementById('manage-favorites');
+        const deleteButton = document.getElementById('delete-favorites');
+        const checkboxes = document.querySelectorAll('.manage-checkbox');
+
+        manageButton.addEventListener('click', () => {
+            checkboxes.forEach(checkbox => checkbox.style.display = checkbox.style.display === 'none' ? 'inline-block' : 'none');
+            deleteButton.style.display = deleteButton.style.display === 'none' ? 'inline-block' : 'none';
+        });
+
+        deleteButton.addEventListener('click', () => {
+            const selected = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+            selected.forEach(checkbox => {
+                fetch('/remove_favorite', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ file_path: checkbox.dataset.file })
+                }).then(() => location.reload());
+            });
+        });
+    </script>
+</body>
+</html>

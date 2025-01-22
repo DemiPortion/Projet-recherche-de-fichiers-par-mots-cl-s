@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Résultats de recherche</title>
+</head>
+<body>
+    <div class="results-container">
+        <a href="/" class="back-btn">← Retour à la recherche</a>
+        <h1>Résultats pour "{{ keyword }}"</h1>
+
+        <ul class="results-list">
+            {% for file in results %}
+            <li class="result-item">
+                <div class="result-info">
+                    <h3>{{ file.path }}</h3>
+                    <p><strong>Type :</strong> {{ file.type }}</p>
+                    <p><strong>Dernière modification :</strong> {{ file.last_modified | format_datetime }}</p>
+                </div>
+                <div class="result-actions">
+                    <form action="/open" method="post">
+                        <input type="hidden" name="file_path" value="{{ file.path }}">
+                        <button class="btn open-btn" type="submit">Ouvrir</button>
+                    </form>
+                    <button 
+                        class="btn favorite-btn {% if file.path in favorites %}favorited{% endif %}" 
+                        data-file="{{ file.path }}"
+                    >
+                        ⭐
+                    </button>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        document.querySelectorAll('.favorite-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const filePath = button.getAttribute('data-file');
+                fetch('/toggle_favorite', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ file_path: filePath })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'added') {
+                        button.classList.add('favorited');
+                    } else if (data.status === 'removed') {
+                        button.classList.remove('favorited');
+                    }
+                })
+                .catch(error => console.error('Erreur:', error));
+            });
+        });
+    </script>
+</body>
+</html>
