@@ -31,7 +31,20 @@
     </div>
 
     <script>
-        // Fonction pour ajouter un fichier aux favoris
+        // Fonction pour afficher une notification moderne
+        function showNotification(message, type = "success") {
+            const notification = document.createElement("div");
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+    
+            setTimeout(() => {
+                notification.style.opacity = "0";
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+    
+        // Ajout de favoris avec une notification
         document.querySelectorAll('.favorite-btn').forEach(button => {
             button.addEventListener('click', () => {
                 const filePath = button.getAttribute('data-file');
@@ -43,11 +56,12 @@
                     body: `file_path=${encodeURIComponent(filePath)}`,
                 })
                 .then(() => {
-                    alert(`Fichier ajouté aux favoris : ${filePath}`);
+                    showNotification(`Fichier ajouté aux favoris : ${filePath}`);
                 })
                 .catch(error => console.error('Erreur lors de l’ajout aux favoris :', error));
             });
         });
     </script>
+        
 </body>
 </html>

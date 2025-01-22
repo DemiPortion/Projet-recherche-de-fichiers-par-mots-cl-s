@@ -75,3 +75,30 @@ body {
 .remove-btn:hover {
     background: #c0392b;
 }
+
+/* Style de la notification moderne */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+}
+
+.notification.error {
+    background-color: #f44336;
+}
+
+.notification.success {
+    background-color: #4caf50;
+}
+
+.notification.warning {
+    background-color: #ff9800;
+}        
