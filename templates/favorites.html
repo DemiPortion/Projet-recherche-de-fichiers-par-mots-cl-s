@@ -3,32 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/style.css">
-    <title>Favoris</title>
+    <link rel="stylesheet" href="/static/favorites.css">
+    <title>Mes Favoris</title>
 </head>
 <body>
-    <h1>Favoris</h1>
-
-    {% if favorites %}
-        <ul>
-        {% for file in favorites %}
-            <li>
-                <form action="/open" method="post" style="display:inline;">
-                    <input type="hidden" name="file_path" value="{{ file }}">
-                    <button type="submit" class="open-btn">Ouvrir</button>
-                </form>
-                <form action="/remove_favorite" method="post" style="display:inline;">
-                    <input type="hidden" name="file_path" value="{{ file }}">
-                    <button type="submit" class="remove-btn">Supprimer</button>
-                </form>
-                <p>{{ file }}</p>
-            </li>
-        {% endfor %}
+    <div class="container">
+        <a href="/" class="back-btn">← Retour à l'accueil</a>
+        <h1>Mes Favoris</h1>
+        <ul class="favorites-list">
+            {% if favorites %}
+                {% for file in favorites %}
+                <li>
+                    <span>{{ file }}</span>
+                    <div class="actions">
+                        <form action="/open" method="post" style="display:inline;">
+                            <input type="hidden" name="file_path" value="{{ file }}">
+                            <button class="btn open-btn" type="submit">Ouvrir</button>
+                        </form>
+                        <button class="btn remove-btn" onclick="removeFavorite('{{ file }}')">Supprimer</button>
+                    </div>
+                </li>
+                {% endfor %}
+            {% else %}
+                <p>Aucun favori disponible.</p>
+            {% endif %}
         </ul>
-    {% else %}
-        <p>Aucun favori disponible.</p>
-    {% endif %}
+    </div>
 
-    <a href="/" class="back-btn">Retour à la recherche</a>
+    <script>
+        function removeFavorite(filePath) {
+            fetch('/remove_favorite', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ file_path: filePath }),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === 'success') {
+                    alert(`Favori supprimé : ${data.file}`);
+                    location.reload(); // Recharge la page pour mettre à jour la liste des favoris
+                } else {
+                    console.error('Erreur lors de la suppression du favori :', data.message);
+                }
+            })
+            .catch((error) => {
+                console.error('Erreur lors de la suppression du favori :', error);
+            });
+        }
+    </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/result.css">
+    <link rel="stylesheet" href="/static/results.css">
     <title>Résultats de recherche</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
                     <p>Dernière modification : {{ file.last_modified | format_datetime }}</p>
                 </div>
                 <div class="result-actions">
-                    <form action="/open" method="post">
+                    <form action="/open" method="post" style="display: inline;">
                         <input type="hidden" name="file_path" value="{{ file.path }}">
                         <button class="btn">Ouvrir</button>
                     </form>
@@ -29,5 +29,25 @@
             {% endfor %}
         </ul>
     </div>
+
+    <script>
+        // Fonction pour ajouter un fichier aux favoris
+        document.querySelectorAll('.favorite-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const filePath = button.getAttribute('data-file');
+                fetch('/add_favorite', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `file_path=${encodeURIComponent(filePath)}`,
+                })
+                .then(() => {
+                    alert(`Fichier ajouté aux favoris : ${filePath}`);
+                })
+                .catch(error => console.error('Erreur lors de l’ajout aux favoris :', error));
+            });
+        });
+    </script>
 </body>
 </html>
