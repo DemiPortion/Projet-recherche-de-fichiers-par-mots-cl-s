@@ -1,6 +1,6 @@
 import json
 
-FAVORITES_FILE = "favorites.json"
+FAVORITES_FILE = "index/favorites.json"
 
 def add_to_favorites(file_path):
     try:

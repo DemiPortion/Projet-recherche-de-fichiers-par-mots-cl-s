@@ -76,7 +76,11 @@ body {
     background: #c0392b;
 }
 
-/* Style de la notification moderne */
+
+      
+
+
+/* Notifications modernes */
 .notification {
     position: fixed;
     top: 20px;
@@ -99,6 +103,7 @@ body {
     background-color: #4caf50;
 }
 
+
 .notification.warning {
     background-color: #ff9800;
-}        
+}  

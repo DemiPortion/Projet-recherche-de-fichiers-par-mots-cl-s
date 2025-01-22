@@ -31,7 +31,7 @@
     </div>
 
     <script>
-        // Fonction pour supprimer un favori avec une notification
+        // Fonction pour supprimer un favori
         function removeFavorite(filePath) {
             fetch('/remove_favorite', {
                 method: 'POST',
@@ -40,37 +40,35 @@
                 },
                 body: JSON.stringify({ file_path: filePath }),
             })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.status === 'success') {
-                    showNotification(`Favori supprimé : ${filePath}`);
-                    location.reload(); // Recharge la page pour mettre à jour la liste des favoris
-                } else {
-                    showNotification('Erreur lors de la suppression du favori.', 'error');
-                    console.error('Erreur lors de la suppression du favori :', data.message);
-                }
-            })
-            .catch((error) => {
-                showNotification('Erreur de connexion lors de la suppression.', 'error');
-                console.error('Erreur lors de la suppression du favori :', error);
-            });
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.status === 'success') {
+                        showNotification(`Favori supprimé : ${filePath}`);
+                        location.reload(); // Recharge la page pour mettre à jour la liste des favoris
+                    } else {
+                        showNotification('Erreur lors de la suppression du favori.', 'error');
+                        console.error('Erreur lors de la suppression du favori :', data.message);
+                    }
+                })
+                .catch((error) => {
+                    showNotification('Erreur de connexion lors de la suppression.', 'error');
+                    console.error('Erreur lors de la suppression du favori :', error);
+                });
         }
-    
+
         // Fonction pour afficher une notification moderne
         function showNotification(message, type = "success") {
             const notification = document.createElement("div");
             notification.className = `notification ${type}`;
             notification.textContent = message;
             document.body.appendChild(notification);
-    
+
             setTimeout(() => {
                 notification.style.opacity = "0";
                 setTimeout(() => notification.remove(), 500);
             }, 3000);
         }
     </script>
-    
-    
-    
+
 </body>
 </html>

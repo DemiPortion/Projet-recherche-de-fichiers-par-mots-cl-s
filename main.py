@@ -71,13 +71,11 @@ def add_favorite():
 
 @app.route('/remove_favorite', methods=['POST'])
 def remove_favorite():
-    file_path = request.json.get('file_path')  # Récupère le chemin du fichier depuis la requête
+    file_path = request.json.get('file_path')  # Récupère le chemin du fichier depuis la requête JSON
     if file_path:
-        remove_from_favorites(file_path)  # Appelle la fonction pour supprimer un favori
+        remove_from_favorites(file_path)  # Appelle la fonction pour supprimer le favori
         return jsonify({"status": "success", "file": file_path})
     return jsonify({"status": "error", "message": "No file path provided"}), 400
-
-
 
 
 if __name__ == "__main__":
