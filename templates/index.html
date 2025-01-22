@@ -33,6 +33,16 @@
             <h1>Recherche de fichiers</h1>
             <form action="/search" method="post">
                 <input type="text" name="keyword" placeholder="Exemple : rapport, budget, etc." required>
+                <select name="file_type">
+                    <option value="">Tous types</option>
+                    <option value="pdf">PDF</option>
+                    <option value="docx">Word</option>
+                    <option value="xlsx">Excel</option>
+                    <option value="png">Image (PNG)</option>
+                    <option value="jpg">Image (JPG)</option>
+                    <option value="txt">Texte</option>
+                    <option value="csv">CSV</option>
+                </select>
                 <button type="submit">Rechercher</button>
             </form>
         </div>

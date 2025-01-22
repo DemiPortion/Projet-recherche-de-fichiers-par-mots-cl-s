@@ -19,49 +19,18 @@
                     <p>Dernière modification : {{ file.last_modified | format_datetime }}</p>
                 </div>
                 <div class="result-actions">
-                    <form action="/open" method="post" style="display: inline;">
+                    <form action="/open" method="post">
                         <input type="hidden" name="file_path" value="{{ file.path }}">
                         <button class="btn">Ouvrir</button>
                     </form>
-                    <button class="favorite-btn" data-file="{{ file.path }}">⭐</button>
+                    <form action="/add_favorite" method="post">
+                        <input type="hidden" name="file_path" value="{{ file.path }}">
+                        <button class="btn favorite-btn">⭐ Ajouter</button>
+                    </form>
                 </div>
             </li>
             {% endfor %}
         </ul>
     </div>
-
-    <script>
-        // Fonction pour afficher une notification moderne
-        function showNotification(message, type = "success") {
-            const notification = document.createElement("div");
-            notification.className = `notification ${type}`;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-    
-            setTimeout(() => {
-                notification.style.opacity = "0";
-                setTimeout(() => notification.remove(), 500);
-            }, 3000);
-        }
-    
-        // Ajout de favoris avec une notification
-        document.querySelectorAll('.favorite-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const filePath = button.getAttribute('data-file');
-                fetch('/add_favorite', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `file_path=${encodeURIComponent(filePath)}`,
-                })
-                .then(() => {
-                    showNotification(`Fichier ajouté aux favoris : ${filePath}`);
-                })
-                .catch(error => console.error('Erreur lors de l’ajout aux favoris :', error));
-            });
-        });
-    </script>
-        
 </body>
 </html>

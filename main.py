@@ -26,19 +26,23 @@ def home():
 @app.route('/search', methods=['POST'])
 def search():
     keyword = request.form.get('keyword')
-    save_to_history(keyword)  # Sauvegarde dans l'historique
+    file_type = request.form.get('file_type')  # Récupère le type de fichier sélectionné
+    save_to_history(keyword)
     files = scan_folder(FOLDER_PATH)
     create_index(files)
-    raw_results = search_in_index(keyword)
 
+    # Recherche avec le filtre de type de fichier
+    raw_results = search_in_index(keyword)
     results = []
     for file_path in raw_results:
-        file_mod_time = os.path.getmtime(file_path)
-        results.append({
-            "path": file_path,
-            "type": file_path.split('.')[-1],
-            "last_modified": file_mod_time,
-        })
+        file_ext = file_path.split('.')[-1]  # Récupère l'extension du fichier
+        if not file_type or file_ext.lower() == file_type.lower():  # Applique le filtre
+            file_mod_time = os.path.getmtime(file_path)
+            results.append({
+                "path": file_path,
+                "type": file_ext,
+                "last_modified": file_mod_time,
+            })
 
     return render_template('results.html', keyword=keyword, results=results)
 
