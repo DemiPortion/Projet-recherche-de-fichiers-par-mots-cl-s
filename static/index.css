@@ -9,7 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
+    overflow: hidden; /* Pas de défilement global */
 }
 
 /* Container principal */
@@ -22,7 +22,7 @@ body {
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    overflow: hidden; /* Suppression du défilement horizontal */
 }
 
 /* Barre latérale gauche (Favoris) */
@@ -31,7 +31,6 @@ body {
     background: #eef3f9;
     padding: 20px;
     border-right: 1px solid #d4e1f5;
-    overflow-y: auto;
 }
 
 .sidebar-left h2 {
@@ -45,8 +44,6 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    height: calc(100% - 50px);
-    overflow-y: auto;
 }
 
 .sidebar-left ul li {
@@ -64,6 +61,23 @@ body {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Style pour le lien "Gérer" */
+#manage-favorites {
+    font-size: 0.85rem; /* Réduction de la taille de police */
+    color: #6c63ff; /* Couleur plus attrayante */
+    text-decoration: none;
+    margin-left: 10px;
+    font-weight: bold; /* Rend le texte un peu plus visible */
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease; /* Ajoute un effet au survol */
+}
+
+#manage-favorites:hover {
+    color: #4a3dab; /* Couleur au survol */
+    text-decoration: underline; /* Souligne le texte au survol */
+    transform: scale(1.1); /* Légère mise en valeur au survol */
+}
+
 /* Section centrale */
 .center-section {
     flex: 2;
@@ -71,7 +85,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Alignement en haut */
 }
 
 .center-section h1 {
@@ -80,7 +94,6 @@ body {
     color: #2c3e50;
 }
 
-/* Formulaire de recherche */
 form {
     display: flex;
     flex-direction: row;
@@ -125,13 +138,32 @@ form button[type="submit"]:hover {
     transform: scale(1.05);
 }
 
+/* Filtres sous la barre de recherche */
+.filters {
+    margin-top: 15px; /* Espacement entre la recherche et les filtres */
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.filters input[type="text"],
+.filters input[type="date"],
+.filters select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 /* Barre latérale droite (Historique) */
 .sidebar-right {
     flex: 1;
     background: #eef3f9;
     padding: 20px;
     border-left: 1px solid #d4e1f5;
-    overflow-y: auto;
 }
 
 .sidebar-right h2 {
@@ -146,68 +178,41 @@ form button[type="submit"]:hover {
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: column-reverse;
-    gap: 10px;
-    height: calc(100% - 50px);
-    overflow-y: auto;
+    flex-direction: column;
+    gap: 5px;
 }
 
+/* Historique */
 .sidebar-right ul li {
-    padding: 10px 15px;
+    padding: 4px 8px; /* Réduit la hauteur et l'espacement intérieur */
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: box-shadow 0.3s ease;
+    font-size: 0.85rem; /* Réduit légèrement la taille du texte */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-align: center;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 .sidebar-right ul li:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
 }
 
 .sidebar-right ul li button {
     background: #007bff;
     color: #fff;
-    padding: 8px 12px;
     border: none;
-    border-radius: 8px;
+    padding: 4px 8px; /* Réduit la taille des boutons */
+    font-size: 0.85rem; /* Taille de la police pour correspondre */
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 0.9rem;
     transition: background 0.3s ease, transform 0.2s ease;
+    width: 100%; /* Prend toute la largeur disponible */
 }
 
 .sidebar-right ul li button:hover {
     background: #0056b3;
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
-/* Bouton Favoris */
-.favorite-btn {
-    padding: 8px 12px;
-    background: #ffc107;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    color: white;
-    transition: background 0.3s ease;
-}
-
-.favorite-btn:hover {
-    background: #e0a800;
-}
-
-/* Bouton Gérer */
-#manage-favorites {
-    color: #6c63ff;
-    text-decoration: none;
-    margin-left: 10px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-#manage-favorites:hover {
-    text-decoration: underline;
-}

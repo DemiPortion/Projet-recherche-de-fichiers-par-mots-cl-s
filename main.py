@@ -70,8 +70,8 @@ def add_favorite():
     file_path = request.form.get('file_path')
     if file_path:
         add_to_favorites(file_path)
-        return jsonify({"status": "success", "file": file_path})
-    return jsonify({"status": "error", "message": "No file path provided"}), 400
+    return redirect(url_for('home'))  # Redirige vers la page d'accueil (index.html)
+
 
 @app.route('/remove_favorite', methods=['POST'])
 def remove_favorite():
