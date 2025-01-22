@@ -1,3 +1,4 @@
+/* Styles globaux */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -20,6 +21,15 @@ body {
     padding: 20px;
 }
 
+/* Titre principal */
+h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Bouton de retour */
 .back-btn {
     display: inline-block;
     margin-bottom: 20px;
@@ -30,11 +40,18 @@ body {
     border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
+.back-btn:hover {
+    background: #0056b3;
+}
+
+/* Liste des favoris */
 .favorites-list {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .favorites-list li {
@@ -47,9 +64,21 @@ body {
     border: 1px solid #d4e1f5;
     border-radius: 8px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 }
 
-.favorites-list .actions {
+.favorites-list li:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.favorites-list p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Actions (Ouvrir/Supprimer) */
+.actions {
     display: flex;
     gap: 10px;
 }
@@ -62,10 +91,12 @@ body {
     color: #fff;
     font-size: 0.9rem;
     cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover {
     background: #0056b3;
+    transform: scale(1.05);
 }
 
 .remove-btn {
@@ -76,34 +107,9 @@ body {
     background: #c0392b;
 }
 
-
-      
-
-
-/* Notifications modernes */
-.notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #4caf50;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* Message "Aucun favori disponible" */
+p {
+    text-align: center;
+    color: #7f8c8d;
     font-size: 1rem;
-    transition: opacity 0.5s ease;
-    z-index: 1000;
 }
-
-.notification.error {
-    background-color: #f44336;
-}
-
-.notification.success {
-    background-color: #4caf50;
-}
-
-
-.notification.warning {
-    background-color: #ff9800;
-}  

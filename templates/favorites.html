@@ -4,71 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/favorites.css">
-    <title>Mes Favoris</title>
+    <title>Favoris</title>
 </head>
 <body>
     <div class="container">
-        <a href="/" class="back-btn">← Retour à l'accueil</a>
-        <h1>Mes Favoris</h1>
-        <ul class="favorites-list">
-            {% if favorites %}
-                {% for file in favorites %}
+        <h1>Favoris</h1>
+        <a href="/" class="back-btn">Retour à la recherche</a>
+        {% if favorites %}
+            <ul class="favorites-list">
+            {% for file in favorites %}
                 <li>
-                    <span>{{ file }}</span>
+                    <p>{{ file }}</p>
                     <div class="actions">
                         <form action="/open" method="post" style="display:inline;">
                             <input type="hidden" name="file_path" value="{{ file }}">
-                            <button class="btn open-btn" type="submit">Ouvrir</button>
+                            <button type="submit" class="btn open-btn">Ouvrir</button>
                         </form>
-                        <button class="btn remove-btn" onclick="removeFavorite('{{ file }}')">Supprimer</button>
+                        <form action="/remove_favorite" method="post" style="display:inline;">
+                            <input type="hidden" name="file_path" value="{{ file }}">
+                            <button type="submit" class="btn remove-btn">Supprimer</button>
+                        </form>
                     </div>
                 </li>
-                {% endfor %}
-            {% else %}
-                <p>Aucun favori disponible.</p>
-            {% endif %}
-        </ul>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun favori disponible.</p>
+        {% endif %}
+
+        
     </div>
-
-    <script>
-        // Fonction pour supprimer un favori
-        function removeFavorite(filePath) {
-            fetch('/remove_favorite', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ file_path: filePath }),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.status === 'success') {
-                        showNotification(`Favori supprimé : ${filePath}`);
-                        location.reload(); // Recharge la page pour mettre à jour la liste des favoris
-                    } else {
-                        showNotification('Erreur lors de la suppression du favori.', 'error');
-                        console.error('Erreur lors de la suppression du favori :', data.message);
-                    }
-                })
-                .catch((error) => {
-                    showNotification('Erreur de connexion lors de la suppression.', 'error');
-                    console.error('Erreur lors de la suppression du favori :', error);
-                });
-        }
-
-        // Fonction pour afficher une notification moderne
-        function showNotification(message, type = "success") {
-            const notification = document.createElement("div");
-            notification.className = `notification ${type}`;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-
-            setTimeout(() => {
-                notification.style.opacity = "0";
-                setTimeout(() => notification.remove(), 500);
-            }, 3000);
-        }
-    </script>
-
 </body>
 </html>
