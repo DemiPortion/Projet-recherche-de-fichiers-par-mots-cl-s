@@ -60,6 +60,7 @@ def open_file():
         return f"Erreur : {e}", 500
     return redirect(url_for('home'))
 
+
 @app.route('/favorites')
 def favorites():
     favorites = get_favorites()

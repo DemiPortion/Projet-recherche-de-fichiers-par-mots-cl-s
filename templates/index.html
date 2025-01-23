@@ -19,8 +19,12 @@
                     {% for file in favorites %}
                     <li>
                         <span>{{ file }}</span>
-                        <button class="favorite-btn favorited" data-file="{{ file }}">⭐</button>
+                        <form action="/open" method="post" style="display:inline;">
+                            <input type="hidden" name="file_path" value="{{ file }}">
+                            <button type="submit" class="open-btn">Ouvrir</button>
+                        </form>
                     </li>
+                    
                     {% endfor %}
                 {% else %}
                     <p>Aucun favori disponible.</p>
