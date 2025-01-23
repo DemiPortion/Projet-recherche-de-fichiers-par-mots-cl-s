@@ -1,9 +1,0 @@
-Projet ligne rouge à rendre sur language python
-
-Utilise soit le tp "textual" qui se trouve sur myges
-
-Ou alors partir sur ce que l'on veut par exemple :
-
-lister des process et montrer le pourcentage d'utilisation
-
-A rendre pour : 23 janvier
