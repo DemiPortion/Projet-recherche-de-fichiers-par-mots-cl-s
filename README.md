@@ -100,6 +100,47 @@ L'objectif principal est de fournir une interface simple et intuitive pour :
 - **static/** : Contient les fichiers CSS pour le style de l'application.
 - **templates/** : Regroupe les fichiers HTML pour l'interface utilisateur.
 - **index/** : Stocke les fichiers d'indexation et les données persistantes comme les favoris.
+  
+## Défis rencontrés et solutions
+
+### Gestion des filtres
+1. **Problème : Les résultats ne respectaient pas toujours les critères de filtrage.**
+   - Initialement, les fichiers retournés par la recherche incluaient des types de fichiers non sélectionnés dans les filtres.
+   - **Solution :** Une vérification stricte a été ajoutée dans la logique de filtrage (`search_in_index`). Nous avons vérifié si le type de fichier correspondait précisément au critère sélectionné par l'utilisateur. Cette vérification a été faite via l'extension du fichier (`file_ext.lower()`).
+
+2. **Problème : Recherche sur un répertoire incorrect.**
+   - Par défaut, la recherche était limitée au dossier `data` sans possibilité de changer le répertoire cible.
+   - **Solution :** Une barre permettant de sélectionner un chemin personnalisé a été ajoutée. Le chemin est enregistré dans un fichier JSON pour qu'il soit sauvegardé entre les sessions.
+
+3. **Problème : Le filtrage par contenu ne fonctionnait pas correctement.**
+   - Les mots-clés n'étaient pas recherchés efficacement dans le contenu des fichiers indexés.
+   - **Solution :** L'indexation a été améliorée pour inclure non seulement les chemins des fichiers mais également leur contenu, grâce à une fonction de lecture de fichiers dans `indexer.py`.
+
+### Gestion des favoris
+1. **Problème : Ajout et suppression non fonctionnels.**
+   - Lorsque l'utilisateur tentait d'ajouter ou de supprimer un favori, l'action ne s'exécutait pas correctement, et parfois rien ne se passait.
+   - **Solution :** 
+     - L'utilisation de méthodes `POST` avec des boutons spécifiques a été mise en œuvre pour gérer séparément l'ajout et la suppression.
+     - Une logique conditionnelle stricte a été introduite pour s'assurer que chaque action est bien exécutée.
+
+2. **Problème : Visualisation des favoris dans l'interface.**
+   - Les favoris étaient affichés sous forme d'étoiles (⭐), ce qui n'était pas intuitif pour l'utilisateur.
+   - **Solution :** Un bouton "Ouvrir" a été ajouté à chaque favori, rendant l'interface plus claire et plus fonctionnelle.
+
+3. **Problème : Les favoris supprimés réapparaissaient après un rechargement de la page.**
+   - Cela se produisait en raison d'une gestion incorrecte du fichier JSON contenant les favoris.
+   - **Solution :** La gestion des fichiers JSON a été optimisée pour garantir une lecture et une écriture cohérentes à chaque opération.
+
+4. **Problème : Taille des boutons et espacement.**
+   - Les boutons d'ajout/suppression de favoris ou d'ouverture étaient trop grands ou mal alignés.
+   - **Solution :** Le style CSS a été ajusté pour réduire la taille des boutons et améliorer leur espacement par rapport au texte, offrant une interface utilisateur plus propre et harmonieuse.
+
+### Résumé des solutions techniques
+- Les fonctions de recherche ont été renforcées par une validation stricte des critères.
+- La gestion des favoris repose sur des fichiers JSON, garantissant une persistance fiable des données.
+- L'interface utilisateur a été adaptée pour améliorer l'expérience utilisateur, notamment avec des boutons clairs et des espaces bien gérés.
+
+Ces améliorations permettent désormais une utilisation fluide et intuitive de l'application, tout en s'assurant que chaque fonctionnalité fonctionne comme prévu.
 
 ## Pourquoi ces choix ?
 
